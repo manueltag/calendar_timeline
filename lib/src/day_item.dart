@@ -46,7 +46,7 @@ class DayItem extends StatelessWidget {
         color: available
             ? dayColor ?? Theme.of(context).colorScheme.secondary
             : dayColor?.withOpacity(0.5) ?? Theme.of(context).colorScheme.secondary.withOpacity(0.5),
-        fontSize: 32,
+        fontSize: 26,
         fontWeight: FontWeight.normal);
 
     if (isWeekDay) {
@@ -57,9 +57,26 @@ class DayItem extends StatelessWidget {
 
     final selectedStyle = TextStyle(
       color: activeDayColor ?? Colors.white,
-      fontSize: 32,
+      fontSize: 26,
       fontWeight: FontWeight.bold,
     );
+
+    TextStyle dayNameTextStyle = isSelected
+        ? TextStyle(
+            color: dayNameColor ?? activeDayColor ?? Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+          )
+        : TextStyle(
+            color: unselectedDayNameColor ?? Colors.white,
+            fontSize: 14,
+          );
+
+    if (isWeekDay) {
+      dayNameTextStyle = dayNameTextStyle.copyWith(
+        color: weekendDayNameColor ?? dayNameTextStyle.color,
+      );
+    }
 
     return GestureDetector(
       onTap: available ? onTap as void Function()? : null,
@@ -73,6 +90,8 @@ class DayItem extends StatelessWidget {
         height: height,
         width: width,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             if (isSelected && showDots) ...[
@@ -81,8 +100,8 @@ class DayItem extends StatelessWidget {
                 child: _buildDots(),
               ),
             ] else
-              SizedBox(
-                height: showDots ? dotsContainerHeight : 6,
+              Container(
+                height: showDots ? dotsContainerHeight : 0,
               ),
             Text(
               dayNumber.toString(),
@@ -91,17 +110,8 @@ class DayItem extends StatelessWidget {
             if (isSelected || showDayName)
               Text(
                 shortName,
-                style: isSelected
-                    ? TextStyle(
-                        color: dayNameColor ?? activeDayColor ?? Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      )
-                    : TextStyle(
-                        color: unselectedDayNameColor ?? Colors.white,
-                        fontSize: 14,
-                      ),
-              )
+                style: dayNameTextStyle,
+              ),
           ],
         ),
       ),
