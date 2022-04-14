@@ -22,8 +22,7 @@ void main() {
                 ),
               );
 
-              final upperCasedName =
-                  find.text(ParamFactory.monthName.toUpperCase());
+              final upperCasedName = find.text(ParamFactory.monthName.toUpperCase());
               expect(upperCasedName, findsOneWidget);
             },
           );
@@ -94,6 +93,7 @@ void main() {
             '[onTap] callback when is tapped',
             (WidgetTester tester) async {
               var functionCalls = 0;
+              // ignore: prefer_function_declarations_over_variables
               final onTap = () => functionCalls++;
 
               await tester.pumpApp(

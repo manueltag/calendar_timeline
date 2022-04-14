@@ -7,23 +7,24 @@ class MonthItem extends StatelessWidget {
   final bool isSelected;
   final Color? color;
 
-  MonthItem({
+  const MonthItem({
+    Key? key,
     required this.name,
     required this.onTap,
     this.isSelected = false,
-    this.color
-  });
+    this.color,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: this.onTap as void Function()?,
+      onTap: onTap as void Function()?,
       child: Text(
-        this.name.toUpperCase(),
+        name.toUpperCase(),
         style: TextStyle(
           fontSize: 14,
           color: color ?? Colors.black87,
-          fontWeight: this.isSelected ? FontWeight.bold : FontWeight.w300,
+          fontWeight: isSelected ? FontWeight.bold : FontWeight.w300,
         ),
       ),
     );

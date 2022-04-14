@@ -10,11 +10,12 @@ void main() {
     home: Scaffold(
         body: YearItem(
       name: 'year',
-      onTap: () => print('onTap'),
+      onTap: () {
+        // print('onTap');
+      },
     )),
   );
-  testWidgets('YearItem has name text in uppercase',
-      (WidgetTester tester) async {
+  testWidgets('YearItem has name text in uppercase', (WidgetTester tester) async {
     await tester.pumpWidget(app);
     expect(find.text('YEAR'), findsOneWidget);
   });
@@ -130,6 +131,7 @@ void main() {
             '[onTap] callback when widget is tapped and it is not small',
             (WidgetTester tester) async {
               var functionCalls = 0;
+              // ignore: prefer_function_declarations_over_variables
               final onTap = () => functionCalls++;
 
               await tester.pumpApp(
@@ -148,8 +150,9 @@ void main() {
           );
           testWidgets(
             '[onTap] is not called when widget is tapped and it is small',
-                (WidgetTester tester) async {
+            (WidgetTester tester) async {
               var functionCalls = 0;
+              // ignore: prefer_function_declarations_over_variables
               final onTap = () => functionCalls++;
 
               await tester.pumpApp(

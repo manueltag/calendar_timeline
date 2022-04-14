@@ -27,10 +27,7 @@ void main() {
               ),
             );
 
-            final dateDaysDifference = ParamFactory.lastDate
-                    .difference(ParamFactory.firstDate)
-                    .inDays -
-                1;
+            final dateDaysDifference = ParamFactory.lastDate.difference(ParamFactory.firstDate).inDays - 1;
             final foundDays = find.textContaining(RegExp(r'[0-9]'));
             expect(foundDays, findsNWidgets(dateDaysDifference));
           });
@@ -46,8 +43,7 @@ void main() {
                 ),
               );
 
-              final foundMonths =
-                  find.text(ParamFactory.monthName.toUpperCase());
+              final foundMonths = find.text(ParamFactory.monthName.toUpperCase());
               expect(foundMonths, findsNWidgets(1));
             },
           );
@@ -128,8 +124,7 @@ void main() {
                       widget,
                       ParamFactory.bold,
                     ) &&
-                    (widget as Text).data ==
-                        ParamFactory.monthName.toUpperCase(),
+                    (widget as Text).data == ParamFactory.monthName.toUpperCase(),
               );
 
               expect(foundActiveDays, findsOneWidget);
@@ -144,6 +139,7 @@ void main() {
             'when tap a day or month call [onDateSelected]',
             (WidgetTester tester) async {
               var methodCalls = 0;
+              // ignore: prefer_function_declarations_over_variables
               final onTap = () => methodCalls++;
 
               await tester.pumpApp(
