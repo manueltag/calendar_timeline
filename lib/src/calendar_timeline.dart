@@ -132,9 +132,9 @@ class _CalendarTimelineState extends State<CalendarTimeline> {
     _initCalendar();
     _controllerMonth = ItemScrollController();
     if (widget.showYears) {
-      Future.delayed(const Duration(milliseconds: 250)).then((_) => _moveToYearIndex(_yearSelectedIndex ?? 0));
+      Future.delayed(const Duration(milliseconds: 50)).then((_) => _moveToYearIndex(_yearSelectedIndex ?? 0));
     }
-    _moveToMonthIndex(_monthSelectedIndex ?? 0);
+    Future.delayed(const Duration(milliseconds: 50)).then((_) => _moveToMonthIndex(_monthSelectedIndex ?? 0));
     _moveToDayIndex(_daySelectedIndex ?? 0);
   }
 
