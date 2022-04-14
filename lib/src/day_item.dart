@@ -39,7 +39,8 @@ class DayItem extends StatelessWidget {
 
   final double height = 70.0;
   final double width = 60.0;
-  final double dotsContainerHeight = 12.0;
+  final double dotsContainerHeight = 14.0;
+  final double dayContainerHeight = 20.0;
 
   _buildDay(BuildContext context) {
     TextStyle textStyle = TextStyle(
@@ -94,24 +95,30 @@ class DayItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            if (isSelected && showDots) ...[
-              SizedBox(
-                height: dotsContainerHeight,
-                child: _buildDots(),
+            showDots
+                ? SizedBox(
+                    height: dotsContainerHeight,
+                    child: isSelected && showDots ? _buildDots() : const SizedBox(),
+                  )
+                : const SizedBox(),
+            SizedBox(
+              height: height - dotsContainerHeight - dayContainerHeight,
+              child: Center(
+                child: Text(
+                  dayNumber.toString(),
+                  style: isSelected ? selectedStyle : textStyle,
+                ),
               ),
-            ] else
-              Container(
-                height: showDots ? dotsContainerHeight : 0,
-              ),
-            Text(
-              dayNumber.toString(),
-              style: isSelected ? selectedStyle : textStyle,
             ),
-            if (isSelected || showDayName)
-              Text(
-                shortName,
-                style: dayNameTextStyle,
-              ),
+            SizedBox(
+              height: dayContainerHeight,
+              child: isSelected || showDayName
+                  ? Text(
+                      shortName,
+                      style: dayNameTextStyle,
+                    )
+                  : const SizedBox(),
+            )
           ],
         ),
       ),
