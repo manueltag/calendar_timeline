@@ -73,7 +73,7 @@ class DayItem extends StatelessWidget {
             fontSize: 14,
           );
 
-    if (isWeekDay) {
+    if (isWeekDay && !isSelected) {
       dayNameTextStyle = dayNameTextStyle.copyWith(
         color: weekendDayNameColor ?? dayNameTextStyle.color,
       );
